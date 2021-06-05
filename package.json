@@ -1,6 +1,6 @@
 {
   "name": "express-js-mod",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An express like router for moddable sdk and XS javascript engine",
   "main": "./express-js-mod/express-js-mod.js",
   "keywords": "moddable,xs,express,embedded,iot",
@@ -9,7 +9,6 @@
     "type": "git",
     "url": "https://github.com/dashcraft/express-js-mod"
   },
-
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean",
