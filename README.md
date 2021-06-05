@@ -44,7 +44,7 @@ We can add routes and callbacks like...
 
     let  express = new Express(Server)
     express.get('/home', function(req,res) {
-		res.status(200)
+	    res.status(200)
 	    res.json({test:  'test'})
     })
     let port = 80 // 80 is the default anyways
