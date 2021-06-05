@@ -63,3 +63,5 @@ We can add routes and callbacks like...
 	 - [ ] mime-types
 	 - [ ] buffers
  - [ ] Event Streams
+ - [ ] Add fallback route support
+ - [ ] Add regex route matching support
