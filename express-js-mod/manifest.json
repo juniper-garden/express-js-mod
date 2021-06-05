@@ -1,0 +1,11 @@
+{
+    "preload": [
+      "helpers/*"
+    ],
+    "modules": {
+      "*": [
+        "./*"
+      ],
+      "helpers/*": "./helpers/*"
+    }
+  }

@@ -7,7 +7,7 @@
     "build": "tsc --build",
     "clean": "tsc --build --clean",
     "test": "jest",
-    "postbuild": "cpy ./src/*.json ./dist"
+    "postbuild": "cpy ./src/*.json ./express-js-mod"
   },
   "author": "Daniel Ashcraft",
   "license": "GPLv2",
