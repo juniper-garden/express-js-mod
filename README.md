@@ -1,10 +1,7 @@
 
 # Express JS Mod
-
 This is a express like package for working in the [Moddable SDK](https://www.moddable.com/).
-
 This is not meant to be a 1-1 port, but it attempts to maintain the same interface
-
 we know from [express](https://expressjs.com/).
 
 ## Installation
