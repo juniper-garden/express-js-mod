@@ -26,11 +26,11 @@ then make sure to add the module for the contents of the folder as follows:
 		    "express-js-mod/*"
 	    ],
 	    "modules": {
-		    "*": [
+	        "*": [
 				... other files
 			    "./express-js-mod/*"
-			 ],
-			 "express-js-mod/*": "./express-js-mod/*"
+		    ],
+		    "express-js-mod/*": "./express-js-mod/*"
 		}
 	   }
 
@@ -58,6 +58,7 @@ We can add routes and callbacks like...
  - [ ] Post route test
  - [ ] Put/Patch route test
  - [ ] Delete route test
+ - [ ] Support Hash of Routes using app.route()
  - [ ] Chunked Buffer handling
  - [ ] res.file()
 	 - [ ] mime-types
