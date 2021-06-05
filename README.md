@@ -42,13 +42,13 @@ Afterwards, when the moddable sdk server has been created...
 
 We can add routes and callbacks like...
 
-    let  express = new Express(Server)
-    express.get('/home', function(req,res) {
+    let  app = new Express(Server)
+    app.get('/home', function(req,res) {
 	    res.status(200)
 	    res.json({test:  'test'})
     })
     let port = 80 // 80 is the default anyways
-    express.listen(port)
+    app.listen(port)
 
 ## Todo
 
