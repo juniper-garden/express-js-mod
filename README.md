@@ -8,8 +8,8 @@ This is not meant to be a 1-1 port, but it attempts to maintain the same interfa
 we know from [express](https://expressjs.com/).
 
 ## Installation
-`git clone `
-`cd __ && yarn install`
+`git clone https://github.com/dashcraft/express-js-mod.git` or `git clone git@github.com:dashcraft/express-js-mod.git`
+`cd express-js-mod && yarn install`
 `yarn build`
 
 Copy the `/express-js-mod` folder into your moddable sdk project,
