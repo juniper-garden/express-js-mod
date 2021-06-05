@@ -2,14 +2,21 @@
   "name": "express-js-mod",
   "version": "1.0.0",
   "description": "An express like router for moddable sdk and XS javascript engine",
-  "main": "./dist/dist.js",
+  "main": "./express-js-mod/express-js-mod.js",
+  "keywords": "moddable,xs,express,embedded,iot",
+  "homepage": "https://github.com/dashcraft/express-js-mod",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dashcraft/express-js-mod"
+  },
+
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean",
     "test": "jest",
     "postbuild": "cpy ./src/*.json ./express-js-mod"
   },
-  "author": "Daniel Ashcraft",
+  "author": "Daniel Ashcraft <daniel.ashcraft@ofashandfire.com> (https://www.ofashandfire.com)",
   "license": "GPLv2",
   "devDependencies": {
     "@babel/core": "^7.14.3",
