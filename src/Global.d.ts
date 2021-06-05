@@ -1,0 +1,1 @@
+declare function trace(str: any): any

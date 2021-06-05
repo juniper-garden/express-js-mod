@@ -1,0 +1,30 @@
+{
+  "name": "express-js-mod",
+  "version": "1.0.0",
+  "description": "An express like router for moddable sdk and XS javascript engine",
+  "main": "./dist/dist.js",
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "test": "jest",
+    "postbuild": "cpy ./src/*.json ./dist"
+  },
+  "author": "Daniel Ashcraft",
+  "license": "GPLv2",
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.23",
+    "@vercel/ncc": "^0.28.6",
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^27.0.2",
+    "cpy": "^8.1.2",
+    "cpy-cli": "^3.1.1",
+    "jest": "^27.0.4",
+    "ts-loader": "^9.2.2",
+    "typescript": "^4.3.2",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0"
+  }
+}
