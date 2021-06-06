@@ -1,8 +1,13 @@
 import { MessageValue } from "helpers/messageTranslation";
 import Response from "helpers/Response";
 import parseQuery from 'helpers/parseQuery';
+import { parseJson, parseText } from "helpers/bodyParsers";
 const validMethods = Object.freeze(["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]);
 const Default404 = Object.freeze({ headers: ["Content-type", "text/html"], body: "Resource Not Found", status: 404 });
+const bodyParseMap = Object.freeze({
+    'application/json': parseJson,
+    'text/html': parseText
+});
 export default class Express {
     serverInstance;
     server;
@@ -63,6 +68,12 @@ export default class Express {
                 case MessageValue.requestFragment:
                     break;
                 case MessageValue.requestComplete:
+                    if (!bodyParseMap[this.inboundRequest.headers["content-type"]]) {
+                        this.inboundRequest.data = val1;
+                    }
+                    else {
+                        this.inboundRequest.data = bodyParseMap[this.inboundRequest.headers["content-type"]](val1);
+                    }
                     this.inboundRequest.state = "done";
                     break;
                 case MessageValue.prepareResponse:
