@@ -17,7 +17,10 @@ const Default404: Readonly<{}> = Object.freeze({ headers: ["Content-type", "text
 
 const bodyParseMap: any = Object.freeze({
     'application/json': parseJson,
-    'text/html': parseText
+    'application/text+html': (data:string) => data,
+    'application/text': (data:string) => data,
+    'application/html': (data:string) => data,
+    'text/html': (data:string) => data,
 })
 
 export interface HttpServer {
