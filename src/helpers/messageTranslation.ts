@@ -1,5 +1,4 @@
-
-export const MessageTranslations:any = {
+export const MessageTranslations: Readonly<any> = Object.freeze({
     [-1]: "error",
     1: "connection",
     2: "status",
@@ -10,17 +9,18 @@ export const MessageTranslations:any = {
     8: "prepareResponse",
     9: "responseFragment",
     10: "responseComplete"
-}
+})
 
-export enum MessageValue {
-    "error" = -1,
-    "connection" = 1,
-    "status" = 2,
-    "header" = 3,
-    "headersComplete" = 4,
-    "requestFragment" = 5,
-    "requestComplete" = 6,
-    "prepareResponse" = 8,
-    "responseFragment" = 9,
-    "responseComplete" = 10
-}
+
+export const MessageValue: Readonly<any> = Object.freeze({
+    "error" : -1,
+    "connection" : 1,
+    "status" : 2,
+    "header" : 3,
+    "headersComplete" : 4,
+    "requestFragment" : 5,
+    "requestComplete" : 6,
+    "prepareResponse" : 8,
+    "responseFragment" : 9,
+    "responseComplete" : 10
+})

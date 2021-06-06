@@ -10,26 +10,9 @@ we know from [express](https://expressjs.com/).
 `yarn build`
 
 Copy the `/express-js-mod` folder into your moddable sdk project,
-then make sure to add the module for the contents of the folder as follows:
+then add the express-js-mod package to your projects manifest.json includes:
 
-    manifest.json
-    {
-	    "include": [
-		    ... other files
-		    "./express-js-mod/manifest.json"
-	    ],
-	    "preload": [
-		    ... other files
-		    "express-js-mod/*"
-	    ],
-	    "modules": {
-	        "*": [
-				... other files
-			    "./express-js-mod/*"
-		    ],
-		    "express-js-mod/*": "./express-js-mod/*"
-		}
-	   }
+`"./express-js-mod/manifest.json"`
 
 ## Usage
 First import the primary package

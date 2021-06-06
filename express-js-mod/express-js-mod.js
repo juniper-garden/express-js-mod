@@ -1,16 +1,18 @@
 import { MessageValue } from "helpers/messageTranslation";
 import Response from "helpers/Response";
-const validMethods = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"];
+import parseQuery from 'helpers/parseQuery';
+const validMethods = Object.freeze(["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]);
+const Default404 = Object.freeze({ headers: ["Content-type", "text/html"], body: "Resource Not Found", status: 404 });
 export default class Express {
     serverInstance;
     server;
     defaultPort = 80;
     routes = {
-        get: {},
-        post: {},
-        put: {},
-        patch: {},
-        delete: {},
+        get: new Map(),
+        post: new Map(),
+        put: new Map(),
+        patch: new Map(),
+        delete: new Map(),
     };
     constructor(ModdableHttpServer) {
         this.serverInstance = this.curriedServer(ModdableHttpServer);
@@ -34,7 +36,7 @@ export default class Express {
                 case MessageValue.connection:
                     this.inboundRequest = {
                         state: 'status',
-                        headers: [],
+                        headers: {},
                         path: null,
                         httpMethod: null,
                         data: null
@@ -42,15 +44,18 @@ export default class Express {
                     this.outboundResponse = self.createResponse();
                     break;
                 case MessageValue.status:
-                    this.inboundRequest.path = val1;
+                    let parsed = parseQuery(val1);
+                    this.inboundRequest.path = parsed.path;
+                    this.inboundRequest.params = parsed.search;
+                    this.inboundRequest.rawQuery = parsed.query;
+                    this.inboundRequest.location = parsed.relative;
                     this.inboundRequest.httpMethod = val2.toLowerCase();
                     this.inboundRequest.state = 'headers';
                     break;
                 case MessageValue.header:
                     if (!val1 || !val2)
                         break;
-                    this.inboundRequest.headers.push(val1);
-                    this.inboundRequest.headers.push(val2);
+                    this.inboundRequest.headers[`${val1}`] = val2;
                     break;
                 case MessageValue.headersComplete:
                     this.inboundRequest.state = "fragment";
@@ -63,15 +68,18 @@ export default class Express {
                 case MessageValue.prepareResponse:
                     const req = this.inboundRequest;
                     const res = this.outboundResponse;
-                    const handlerCb = self.routes[req.httpMethod][`${req.path}`].cb;
+                    const route = self.routes[req.httpMethod].get(req.path);
+                    if (!route)
+                        return Default404;
+                    const handlerCb = route.cb;
                     if (!handlerCb)
-                        return { headers: ["Content-type", "text/html"], body: "Resource Not Found", status: 404 };
+                        return Default404;
                     // Do stuff here with routes
                     let result = () => {
                         handlerCb(req, res);
                         return res.build();
                     };
-                    return result;
+                    return result();
                 case MessageValue.responseFragment:
                     // do stuff here with chunked data
                     break;
@@ -93,11 +101,11 @@ export default class Express {
             throw new Error('That HTTP method is not valid.');
         return (path, cb) => {
             if (!path || !cb)
-                throw new Error('There was a big no-no');
-            let routeExist = this.routes[method][`${path}`];
+                throw new Error('Path or callback was not given');
+            let routeExist = this.routes[method].get(`${path}`);
             if (routeExist)
-                throw new Error('There was a big no-no');
-            this.routes[method][path] = { cb };
+                throw new Error('The defined route already exists');
+            this.routes[method].set(path, Object.freeze({ cb }));
         };
     };
     get allRoutes() {

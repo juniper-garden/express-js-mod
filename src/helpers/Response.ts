@@ -1,22 +1,19 @@
-
 export default class Response {
-    headers: String[] = [];
+    headers: string[] = [];
     requestStatus: Number = 201;
-    body: String = ''
-
+    body: string = ''
     status(status: Number){
         this.requestStatus = status
     }
 
     json(obj: any) {
         try {
-            let res = JSON.stringify(obj)
-            this.body = res
+            this.body = JSON.stringify(obj)
             this.headers.push('Content-Type');
             this.headers.push('application/json')
         } catch(err) {
             trace('INVALID JSON DATA')
-            throw new Error('Not valid JSON')
+            throw new Error('INVALID JSON DATA')
         }
     }
 

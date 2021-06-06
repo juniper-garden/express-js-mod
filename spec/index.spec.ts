@@ -46,11 +46,11 @@ describe('Unit Tests for Express', () => {
             express.get('/path', fakeCbOne)
             express.get('/hello', fakeCbTwo)
             
-            expect(Object.keys(express.allRoutes.get)).toHaveLength(2)
-            express.allRoutes.get['/path'].cb()
+            expect(express.allRoutes.get.size).toBe(2)
+            express.allRoutes.get.get('/path').cb()
             expect(fakeCbOne).toHaveBeenCalledTimes(1)
 
-            express.allRoutes.get['/hello'].cb()
+            express.allRoutes.get.get('/hello').cb()
             expect(fakeCbTwo).toHaveBeenCalledTimes(1)
         })
 
@@ -61,10 +61,10 @@ describe('Unit Tests for Express', () => {
             express.post('/path', fakeCbOne)
             express.post('/hello', fakeCbTwo)
             
-            expect(Object.keys(express.allRoutes.get)).toHaveLength(2)
-            express.allRoutes.post['/path'].cb()
+            expect(express.allRoutes.get.size).toBe(2)
+            express.allRoutes.post.get('/path').cb()
             expect(fakeCbOne).toHaveBeenCalledTimes(1)
-            express.allRoutes.post['/hello'].cb()
+            express.allRoutes.post.get('/hello').cb()
             expect(fakeCbTwo).toHaveBeenCalledTimes(1)
         })
         it('Should blow up trying to add a route with invalid http method', () => {
