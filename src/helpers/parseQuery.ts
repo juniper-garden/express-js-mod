@@ -19,9 +19,9 @@ function parseQuery (str:string) {
 	return uri;
 };
 
-parseQuery.options = {
+parseQuery.options = Object.freeze({
 	strictMode: false,
-	key: ["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"]
-};
+	key: Object.freeze(["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"])
+});
 
 export default parseQuery

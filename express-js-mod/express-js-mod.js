@@ -3,7 +3,7 @@ import Response from "helpers/Response";
 import parseQuery from 'helpers/parseQuery';
 import { parseJson } from "helpers/bodyParsers";
 const validMethods = Object.freeze(["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]);
-const Default404 = Object.freeze({ headers: ["Content-type", "text/html"], body: "Resource Not Found", status: 404 });
+const Default404 = Object.freeze({ headers: Object.freeze(["Content-type", "text/html"]), body: "Resource Not Found", status: 404 });
 const bodyParseMap = Object.freeze({
     'application/json': parseJson,
     'application/text+html': (data) => data,

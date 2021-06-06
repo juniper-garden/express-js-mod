@@ -13,7 +13,7 @@ interface Route {
     [key:string]: any
 }
 
-const Default404: Readonly<{}> = Object.freeze({ headers: ["Content-type", "text/html"], body: "Resource Not Found", status: 404 })
+const Default404: Readonly<{}> = Object.freeze({ headers: Object.freeze(["Content-type", "text/html"]), body: "Resource Not Found", status: 404 })
 
 const bodyParseMap: any = Object.freeze({
     'application/json': parseJson,
