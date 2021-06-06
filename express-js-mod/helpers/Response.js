@@ -7,14 +7,13 @@ export default class Response {
     }
     json(obj) {
         try {
-            let res = JSON.stringify(obj);
-            this.body = res;
+            this.body = JSON.stringify(obj);
             this.headers.push('Content-Type');
             this.headers.push('application/json');
         }
         catch (err) {
             trace('INVALID JSON DATA');
-            throw new Error('Not valid JSON');
+            throw new Error('INVALID JSON DATA');
         }
     }
     build() {
