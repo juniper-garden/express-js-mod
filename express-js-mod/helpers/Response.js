@@ -1,4 +1,3 @@
-import Resource from "Resource";
 export default class Response {
     headers = [];
     requestStatus = 201;
@@ -19,17 +18,18 @@ export default class Response {
             throw new Error('INVALID JSON DATA');
         }
     }
-    sendResource(path) {
+    sendResource(resource, contentType) {
         try {
             this.headers.push('Content-Type');
-            this.headers.push('application/json');
-            this.data = new Resource(path.slice(1));
+            this.headers.push(contentType);
+            this.data = resource;
             this.position = 0;
             return {
                 headers: [
-                    "Content-type", "text/plain",
+                    "Content-type", this.headers,
                     "Content-length", this.data.byteLength,
                 ],
+                status: this.requestStatus,
                 body: true,
             };
         }
