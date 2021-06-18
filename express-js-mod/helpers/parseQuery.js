@@ -18,4 +18,5 @@ parseQuery.options = Object.freeze({
     strictMode: false,
     key: Object.freeze(["source", "protocol", "authority", "userInfo", "user", "password", "host", "port", "relative", "path", "directory", "file", "query", "anchor"])
 });
+Object.freeze(parseQuery);
 export default parseQuery;

@@ -30,17 +30,27 @@ We can add routes and callbacks like...
     let port = 80 // 80 is the default anyways
     app.listen(port)
 
+We can send resources as responses in routes and callbacks like...
+
+    let  app = new Express(Server)
+    app.get('/home', function(req,res) {
+	    res.sendResource(new Resource("index.html"))
+    })
+    let port = 80 // 80 is the default port
+    app.listen(port)
+
 ## Todo
 
  - [ ] Tests, tests, more tests
- - [ ] Query Params
- - [ ] Inbound Data Handling
+ - [x] Query Params
+ - [x] Inbound Data Handling
  - [ ] Post route test
  - [ ] Put/Patch route test
  - [ ] Delete route test
  - [ ] Support Hash of Routes using app.route()
- - [ ] Chunked Buffer handling
- - [ ] res.file()
+ - [ ] Inbound Chunked Buffer handling
+ - [ ] Outbound Chunked Buffer handling
+ - [x] res.sendResource()
 	 - [ ] mime-types
 	 - [ ] buffers
  - [ ] Event Streams

@@ -1,7 +1,7 @@
 import { MessageValue } from "helpers/messageTranslation";
 import Response from "helpers/Response";
 import parseQuery from 'helpers/parseQuery'
-import { parseJson, parseText } from "helpers/bodyParsers";
+import { parseJson } from "helpers/bodyParsers";
 
 const validMethods:ReadonlyArray<String> = Object.freeze(["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"])
 
@@ -122,7 +122,10 @@ export default class Express {
                 }
                 return result()
               case MessageValue.responseFragment:
-                  // do stuff here with chunked data
+                // do stuff here with chunked data
+                if (this.outboundResponse.hasChunkResponse) {
+                  return this.outboundResponse.sendChunkResource(val1)
+                }
                 break;
               case MessageValue.responseComplete:
                 // do stuff here with posts

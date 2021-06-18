@@ -1,6 +1,6 @@
 {
   "name": "express-js-mod",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "An express like router for moddable sdk and XS javascript engine",
   "main": "./express-js-mod/express-js-mod.js",
   "keywords": "moddable,xs,express,embedded,iot",
