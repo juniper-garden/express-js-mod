@@ -122,7 +122,10 @@ export default class Express {
                 }
                 return result()
               case MessageValue.responseFragment:
-                  // do stuff here with chunked data
+                // do stuff here with chunked data
+                if (this.outboundResponse.hasChunkResponse) {
+                  return this.outboundResponse.sendChunkResource(val1)
+                }
                 break;
               case MessageValue.responseComplete:
                 // do stuff here with posts

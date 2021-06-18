@@ -38,4 +38,5 @@ parseQuery.options = Object.freeze({
     "anchor",
   ]),
 });
+Object.freeze(parseQuery);
 export default parseQuery;
